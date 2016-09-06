@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 22
@@ -20,11 +21,11 @@ android {
 }
 
 ext {
-    bintrayRepo = 'vaibhavapp'
+    bintrayRepo = 'maven'
     bintrayName = 'youtube-like'
 
     publishedGroupId = 'com.github.vaibhavjain11'
-    libraryName = 'YoutubeApp'
+    libraryName = 'youtube-like'
     artifact = 'youtube-like'
 
     libraryDescription = 'A wrapper to show youtube video on Android'
@@ -32,7 +33,7 @@ ext {
     siteUrl = 'https://github.com/vaibhavjain11/youtubeApp'
     gitUrl = 'https://github.com/vaibhavjain11/youtubeApp.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'vaibhavjain11'
     developerName = 'vaibhav Jain'
@@ -41,6 +42,24 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
+}
+
+task createPom << {
+    pom {
+        project {
+            groupId 'com.github.vaibhavjain11'
+            artifactId 'youtube-like'
+            version '1.0.1'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
 }
 
 dependencies {
